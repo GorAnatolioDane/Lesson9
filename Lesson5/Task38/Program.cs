@@ -5,64 +5,31 @@
     Console.ResetColor();
 }
 
-printInConsoleWithColor("Введите длинну массива: ",ConsoleColor.DarkBlue);
+printInConsoleWithColor("Введите длинну массива: ", ConsoleColor.DarkBlue);
 int userArrayLength = Convert.ToInt32(Console.ReadLine());
 
-int[] getRandomArray(int userArrayLength, int startPoint, int endPoint)
+double[] arrayRealNumbers = new double[userArrayLength];
+for (int i = 0; i < arrayRealNumbers.Length; i++)
 {
-    int[] resultArray = new int[userArrayLength];
-    for (int i = 0; i < userArrayLength; i++)
+    arrayRealNumbers[i] = new Random().Next(1, 999);
+    Console.Write(arrayRealNumbers[i] + " ");
+}
+
+double maxNumber = arrayRealNumbers[0];
+double minNumber = arrayRealNumbers[0];
+
+for (int i = 1; i < arrayRealNumbers.Length; i++)
+{
+    if (maxNumber < arrayRealNumbers[i])
     {
-        resultArray[i] = new Random().Next(startPoint, endPoint + 1);
+        maxNumber = arrayRealNumbers[i];
     }
-    return resultArray;
-}
-
-void printArray(int[] incomingArray)
-{
-    Console.Write("[");
-    for(int i = 0; i < incomingArray.Length; i++)
+    if (minNumber > arrayRealNumbers[i])
     {
-      Console.Write(incomingArray[i]);  
-      if(i < incomingArray.Length - 1)
-      {
-        Console.Write(",")  ;  
-      }
+        minNumber = arrayRealNumbers[i];
     }
-    Console.WriteLine("]");
-}
-int getMaxNumberInArray(int[] incomingArray)
-{
-    int MaxNumber = 0;
-    for(int i = 0; i < incomingArray.Length; i++)
-    {  
-      if(incomingArray[i] > MaxNumber)
-      {
-        MaxNumber = incomingArray[i];     
-      }
-    }
-    return MaxNumber;
-}
-int getMinNumberInArray(int[] incomingArray)
-{
-    int MinNumber = 999;
-    for(int i = 0; i < incomingArray.Length; i++)
-    {  
-      if(incomingArray[i] < MinNumber)
-      {
-        MinNumber = incomingArray[i];     
-      }
-    }
-    return MinNumber;
 }
 
-int [] currentArray = getRandomArray(userArrayLength, 99, 999);
-printArray(currentArray);
+double decision = maxNumber - minNumber;
 
-int MaxNumberInArray = getMaxNumberInArray(currentArray);
-int MinNumberInArray = getMinNumberInArray(currentArray);
-int DiffOfNumbersMaxAndMin = MaxNumberInArray - MinNumberInArray;
-
-printInConsoleWithColor($"Максимальное число в массиве : {MaxNumberInArray}",ConsoleColor.DarkMagenta);
-printInConsoleWithColor($"Минимальное число в массиве : {MinNumberInArray}",ConsoleColor.DarkMagenta);
-printInConsoleWithColor($"Разница Максимально и Минимального чисел : {DiffOfNumbersMaxAndMin}",ConsoleColor.DarkMagenta);
+printInConsoleWithColor($"\nРазница между максимальным ({maxNumber}) и минимальным({minNumber}) элементами: {decision}", ConsoleColor.DarkMagenta);
