@@ -16,7 +16,7 @@ void CreateArrayDouble(double[,] array)
     {
         for (int j = 0; j < n; j++)
         {
-            array[i, j] = new Random().NextDouble() * 20 - 10;
+            array[i, j] = new Random().NextDouble() * 20;
         }
     }
 }
@@ -41,7 +41,7 @@ int[] position = ParserString(positionElement);
 if (position[0] <= m && position[1] <= n && position[0] >= 0 && position[1] >= 0)
 {
     double result = array[position[0] - 1, position[1] - 1];
-    Console.Write($"Значение элемента: {result}");
+    Console.WriteLine($"Значение элемента: {result}");
 }
 else Console.Write($"такого элемента в массиве нет.");
 
